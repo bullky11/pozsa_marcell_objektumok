@@ -46,32 +46,57 @@ function init() {
   const ART = document.querySelector("article");
   ART.innerHTML = "<button> Kutya </button>";
   let txt = osszeallit();
+  let tabl =tablazat();
   ART.innerHTML = txt;
-  const gomb = document.querySelectorAll("button");
+  ART.innerHTML+=tabl;
+  const gomb = document.querySelector("button");
   gomb.addEventListener("click", function () {
     megnyom(ART, kutyaLista);
   });
   osszeallit();
+  tablazat();
   function osszeallit() {
     let txt = "";
     for (let index = 0; index < KUTYAK.length; index++) {
-        txt+="<div> <button>Töröl</button>"
+    txt+="<div>  <button>Töröl</button>"
       for (const key in KUTYAK[index]) {
         key, KUTYAK[index][key];
         txt += `
       <p>
       ${key} : ${KUTYAK[index][key]}
       </p>
+      
       `;
       }
-      txt+="</div>"
+      txt+=" </div>"
+    }
+    console.log(txt);
+    return txt;
+  }
+  function tablazat() {
+    let txt = "";
+    for (let index = 0; index < KUTYAK.length; index++) {
+    txt+="<table>  "
+      for (const key in KUTYAK[index]) {
+        key, KUTYAK[index][key];
+        txt += `
+      <tr><th>
+      ${key} : ${KUTYAK[index][key]}
+      </th> </tr>
+      
+      `;
+      }
+      txt+=" </table>"
     }
     console.log(txt);
     return txt;
   }
 }
 function megnyom(ART, kutyaLista) {
-  const ART2 = document.querySelectorAll("div");
-  ART2.innerHTML += kutyaLista[2];
+    for (let index = 0; index < KUTYAK.length; index++) {
+        const ART2 = document.querySelectorAll("div")[index];
+        ART2.innerHTML += kutyaLista[index];        
+    }
+ 
 
 }
